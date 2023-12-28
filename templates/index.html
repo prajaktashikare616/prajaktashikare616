@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+	<title>Flask Tutorial</title>
+</head>
+<body>
+	<div class="topnav">
+        <a class="active" href="/">Home</a>
+        <a href="insert">Add student</a>
+		<form action="{{ url_for('search') }}" method="GET">
+			<input type="text" placeholder="Search by name" name="query">
+			<button type="submit">Search</button>
+		</form>
+
+    </div>
+	
+	<h3>Welcome to flask tutorial</h3>
+	<table border="1">
+	
+		<tr>
+			<th colspan="5">student Data</th>
+		</tr>
+		<tr>
+			<th>sid</th>
+			<th>Name</th>
+			<th>course</th>
+			<th>year</th>
+			<th>percentage</th>
+		</tr>
+		{% if query %}
+    <tr>
+        <th colspan="5">Search Results for "{{ query }}"</th>
+    </tr>
+{% endif %}
+
+		{% for s in students %}
+		<tr>
+			<td>{{s.id}} </td>
+			<td><a href="{{url_for('update', sid=s.id)}}">{{s.name}}</a></td>
+			<td>{{s.course}} </td>
+			<td>{{s.year}} </td>
+			<td>{{s.percentage}} </td>
+			<td><a href="{{url_for('update', sid=s.id)}}"><button class="button button1">Update</button></a></td>
+			<td><a href="{{url_for('delete', sid=s.id)}}"><button class="button button2">Delete</button></a></td>
+			
+		</tr>
+		{% endfor %}
+
+		
+	</table>
+
+</body>
+</html>

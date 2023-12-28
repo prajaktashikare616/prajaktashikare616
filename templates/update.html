@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+	<title>Flask Tutorial</title>
+</head>
+<body>
+	<div class="topnav">
+        <a class="active" href="/">Home</a>
+        <a href="{{ url_for('insert') }}">Add student</a>
+		
+    
+    </div>
+	<h3>Updating student Information</h3>
+	<form action="{{url_for('update', sid=student.id)}}" method="post"class="updateform">
+		
+		<label for="name">Name</label><br>
+		<input type="text" name="name" value="{{student.name}}"/><br>
+
+		<label for="course">course</label><br>
+		<input type="text" name="course"  value="{{student.course}}"/><br>
+
+		<label for="year">year</label><br>
+		<input type="text" name="year"  value="{{student.year}}"/><br>
+
+		<label for="percentage">percentage</label><br>
+		<input type="text" name="percentage"  value="{{student.percentage}}"/><br>
+
+		<button type="submit" style="">Update</button>
+		
+	</form>
+
+</body>
+</html>
